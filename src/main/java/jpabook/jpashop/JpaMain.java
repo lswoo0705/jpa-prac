@@ -25,6 +25,9 @@ public class JpaMain {
 
             em.persist(book);
 
+            em.createQuery("select i from Item i where type(i) = Book", Item.class)
+                            .getResultList();
+
             tx.commit(); // 변경 내용을 db에 반영(플러시) -> 이 때 쿼리가 날아감
         } catch (Exception e) {
             tx.rollback();
